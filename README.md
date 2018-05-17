@@ -26,7 +26,7 @@ details = client.get_account_info()
 print(details)
 </pre>
 
-<b>NOTE:</b> <i>the function returns a dictionary object with all necessary values</i>
+<b>NOTE:</b> <i>the function returns a dictionary object with all necessary values.</i>
 
 <h2>The Docs</h2>
 <h3>The full documentation of this module will be published soon. Once it is ready, we'll post link here.</h3>
