@@ -3,7 +3,7 @@
 <h1>Examples</h1>
 
 <h2>Your account</h2>
-<h3>1. If you have an axisting account, use <strong>LogIn</strong></h3>
+<h3>1. If you have an axisting account, use <u>LogIn</u>.</h3>
 <br>
 <pre>
 from telegraph import LogIn
@@ -11,7 +11,7 @@ client = LogIn('ACCESS_TOKEN')
 </pre>
 <b>NOTE:</b> <i>ACCESS_TOKEN is your access token for your Telegraph account.</i>
 
-<h4>2. In order to create new Telegraph account use NewAccount</h4>
+<h3>2. In order to create new Telegraph account use <u>NewAccount</u></h3>
 </br>
 <pre>
 from telegraph import NewAccount
@@ -19,7 +19,7 @@ client = NewAccount(short_name='Short_name', author_name='Your_Name', author_url
 </pre>
 
 <h2>Account info</h2>
-<h3>Getting your account details is much easier, just use get_account_info function.</h3>
+<h3>Getting your account details is much easier, just use <u>get_account_info</u> function.</h3>
 
 <pre>
 details = client.get_account_info()
