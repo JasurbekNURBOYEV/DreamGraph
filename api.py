@@ -44,14 +44,6 @@ class NewAccount:
         return Account(result['result'])
 
 
-def log_in(access_token):
-    return LogIn(access_token)
-
-
-def new_account(short_name, author_name=None, author_url=None):
-    return NewAccount(short_name, author_name, author_url)
-
-
 def msg_to_node(data, types='msg'):
     """
     Function to make Node elements from Message object.
