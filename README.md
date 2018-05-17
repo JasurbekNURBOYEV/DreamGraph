@@ -1,5 +1,5 @@
 # DreamGraph
-
+<em>The software is licenced under GPL licence.</em>
 <h1>Examples</h1>
 
 <h2>Your account</h2>
