@@ -9,7 +9,7 @@
 from dreamgraph import LogIn
 client = LogIn('ACCESS_TOKEN')
 </pre>
-<b>NOTE:</b> <i>ACCESS_TOKEN is your access token for your Telegraph account.</i>
+<b>NOTE:</b>  <i>ACCESS_TOKEN is your access token for your Telegraph account.</i>
 
 <h3>2. In order to create new Telegraph account use <code>NewAccount</code>.</h3>
 </br>
@@ -27,6 +27,9 @@ print(details)
 </pre>
 
 <b>NOTE:</b> <i>the function returns a dictionary object with all necessary values</i>
+
+<h2>The Docs</h2>
+<h3>The full documentation of this module will be published soon. Once it is ready, we'll post link here.</h3>
 
 <h2>Comments and bug reports</h2>
 <h3>Community: <a href="https://t.me/python_uz">Telegram Group</a></h3>
