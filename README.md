@@ -1,5 +1,5 @@
 # DreamGraph
-<em>The software is licenced under GPL licence.</em>
+<em>The Python module for Telegraph API.</em>
 <h1>Examples</h1>
 
 <h2>Your account</h2>
