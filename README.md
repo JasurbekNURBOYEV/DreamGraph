@@ -9,7 +9,7 @@
 from telegraph import LogIn
 client = LogIn('ACCESS_TOKEN')
 </pre>
-<b>NOTE:</b> <i>ACCESS_TOKEN is your access token for your telegraph account.</i>
+<b>NOTE:</b> <i>ACCESS_TOKEN is your access token for your Telegraph account.</i>
 
 <h4>2. In order to create new Telegraph account use NewAccount</h4>
 </br>
