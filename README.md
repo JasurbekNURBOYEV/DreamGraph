@@ -3,7 +3,7 @@
 <h1>Examples</h1>
 
 <h2>Your account</h2>
-<h3>1. If you have an axisting account, use <code>LogIn</code>.</h3>
+<h3>1. If you have an existing account, use <code>LogIn</code>.</h3>
 <br>
 <pre>
 from dreamgraph import LogIn
