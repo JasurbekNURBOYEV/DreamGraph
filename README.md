@@ -11,7 +11,7 @@ client = LogIn('ACCESS_TOKEN')
 </pre>
 <b>NOTE:</b> <i>ACCESS_TOKEN is your access token for your Telegraph account.</i>
 
-<h3>2. In order to create new Telegraph account use <u>NewAccount</u></h3>
+<h3>2. In order to create new Telegraph account use <code>NewAccount</code></h3>
 </br>
 <pre>
 from telegraph import NewAccount
