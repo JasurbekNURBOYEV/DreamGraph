@@ -27,3 +27,7 @@ print(details)
 </pre>
 
 <b>NOTE:</b> <i>the function returns a dictionary object with all necessary values</i>
+
+<h2>Comments and bug reports</h2>
+<h3>Community: <a href="https://t.me/python_uz">Telegram Group</a></h3>
+<h3>Personal contact: <a href="https://t.me/futuredreams">FutureDreams</a></h3>
