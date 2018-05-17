@@ -1,4 +1,4 @@
-# pyTelegraphAPI
+# DreamGraph
 
 <h1>Examples</h1>
 
@@ -6,7 +6,7 @@
 <h3>1. If you have an axisting account, use <code>LogIn</code>.</h3>
 <br>
 <pre>
-from telegraph import LogIn
+from dreamgraph import LogIn
 client = LogIn('ACCESS_TOKEN')
 </pre>
 <b>NOTE:</b> <i>ACCESS_TOKEN is your access token for your Telegraph account.</i>
@@ -14,7 +14,7 @@ client = LogIn('ACCESS_TOKEN')
 <h3>2. In order to create new Telegraph account use <code>NewAccount</code>.</h3>
 </br>
 <pre>
-from telegraph import NewAccount
+from dreamgraph import NewAccount
 client = NewAccount(short_name='Short_name', author_name='Your_Name', author_url='https://your_address.com')
 </pre>
 
