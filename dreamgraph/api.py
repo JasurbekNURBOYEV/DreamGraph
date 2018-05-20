@@ -1,3 +1,4 @@
+#coding:utf8
 """
 DreamGraph - The Python module for Telegraph API.
 Copyright (C) 2018  Jasur NURBOEV <https://github.com/JasurbekNURBOYEV>
@@ -22,39 +23,28 @@ from .params import API_URL
 from .objects import Account
 
 
-class LogIn:
+def LogIn(access_token):
     """
-    Use this class in order to log in to existing Telegraph account.
+    Use this method in order to log in to existing Telegraph account.
     The object of Account class is returned on success.
     """
-    def __init__(self, access_token):
-        self.access_token = access_token
-
-    def __new__(cls, access_token):
-        if access_token:
-            return Account(access_token)
+    return Account(access_token)
 
 
-class NewAccount:
+def NewAccount(short_name, author_name=None, author_url=None):
     """
-    Use this class in order to create new Telegraph account
+    Use this method in order to create new Telegraph account
     The object of Account class is returned on success.
     """
-    def __init__(self, short_name, author_name=None, author_url=None):
-        self.short_name = short_name
-        self.author_name = author_name
-        self.author_url = author_url
-
-    def __new__(cls, short_name, author_name=None, author_url=None):
-        method = 'createAccount'
-        data = {'short_name': short_name}
-        if author_name:
-            data['author_name'] = author_name
-        if author_url:
-            data['author_url'] = author_url
-        result = r.get(url=API_URL + method, params=data)
-        result = json.loads(result.text)
-        return Account(result['result'])
+    method = 'createAccount'
+    data = {'short_name': short_name}
+    if author_name:
+        data['author_name'] = author_name
+    if author_url:
+        data['author_url'] = author_url
+    result = r.get(url=API_URL + method, params=data)
+    result = json.loads(result.text)
+    return Account(result['result'])
 
 
 def msg_to_node(data, types='msg'):
