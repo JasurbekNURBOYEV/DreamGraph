@@ -1,3 +1,4 @@
+#coding:utf8
 """
 DreamGraph - The Python module for Telegraph API.
 Copyright (C) 2018  Jasur NURBOEV <https://github.com/JasurbekNURBOYEV>
@@ -195,7 +196,11 @@ class PageList:
     and the list of objects of Page class (pages).
     """
     def __init__(self, data):
-        pass
+        self.total_count = data['total_count']
+        pages = []
+        for i in data['pages']:
+            pages.append(Page(i))
+        self.pages = pages
 
     def __new__(cls, data=dict):
         cls.total_count = data['total_count']
@@ -236,7 +241,20 @@ class Page:
         self.can_edit = can_edit
 
     def __init__(self, data=dict):
-        pass
+        """
+        :param data: required, the data which is returned by Telegraph API
+        """
+        keys = data.keys()
+        self.path = data['path']
+        self.url = data['url']
+        self.title = data['title']
+        self.description = data['description']
+        self.author_name = data['author_name'] if 'author_name' in keys else None
+        self.image_url = data['image_url'] if 'image_url' in keys else None
+        self.author_url = data['author_url'] if 'author_url' in keys else None
+        self.content = data['content'] if 'content' in keys else None
+        self.views = data['views'] if 'views' in keys else None
+        self.can_edit = data['can_edit'] if 'can_edit' in keys else False
 
     def __new__(cls, path, url, title, description, views, author_name=None, author_url=None, image_url=None, content=None, can_edit=None):
         cls.path = path
@@ -252,10 +270,6 @@ class Page:
         return cls
 
     def __new__(cls, data=dict):
-        """
-        :param data: required, the data which is returned by Telegraph API.
-        :return: the object of current class is returned.
-        """
         keys = data.keys()
         cls.path = data['path']
         cls.url = data['url']
