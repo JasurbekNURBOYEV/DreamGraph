@@ -10,4 +10,7 @@ setup(
   download_url = 'https://github.com/JasurbekNURBOYEV/DreamGraph/archive/1.0.0.tar.gz',
   keywords = ['telegraph', 'telegraph-api', 'python-module', 'dreamgraph'],
   classifiers = [],
+  install_requires=[
+    'requests',
+  ],
 )
