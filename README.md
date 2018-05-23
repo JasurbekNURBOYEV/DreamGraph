@@ -23,7 +23,7 @@ client = NewAccount(short_name='Short_name', author_name='Your_Name', author_url
 </pre>
 
 <h2>Account info</h2>
-<h3>Getting your account details is much easier, just use <code>get_account_info</code> function.</h3>
+<h3>Getting your account details is much easier, just use <code>get_account_info</code> method.</h3>
 
 <pre>
 details = client.get_account_info()
