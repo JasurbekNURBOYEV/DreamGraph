@@ -1,4 +1,4 @@
-from distutils.core import setup
+from setuptools import setup
 setup(
   name = 'dreamgraph',
   packages = ['dreamgraph'],
@@ -11,6 +11,6 @@ setup(
   keywords = ['telegraph', 'telegraph-api', 'python-module', 'dreamgraph'],
   classifiers = [],
   install_requires=[
-    'requests',
-  ],
+          'requests',
+      ],
 )
