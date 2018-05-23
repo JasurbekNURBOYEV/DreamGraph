@@ -36,5 +36,5 @@ print(details)
 <h3>The full documentation of this module will be published soon. Once it is ready, the link will be posted here.</h3>
 
 <h2>Comments and bug reports</h2>
-<h3>Community: <a href="https://t.me/python_uz">Telegram Group</a></h3>
+<h3>Community: <a href="https://t.me/dreamgraph">Telegram Group</a></h3>
 <h3>Personal contact: <a href="https://t.me/futuredreams">FutureDreams</a></h3>
