@@ -40,10 +40,13 @@ def NewAccount(short_name, author_name=None, author_url=None):
     if author_url:
         data['author_url'] = author_url
     result = r.get(url=API_URL + method, params=data)
-    result = json.loads(result.text)
-    return Account(result['result'])
-
-
+    json_object = json.loads(result.text)
+    if 'result' in json_object.keys():
+        return Account(json_object['result'])
+    else:
+        error = json_object['error']
+        raise ValueError('Telegraph API raised an error: {}'.format(error))
+        
 def msg_to_node(data, types='msg'):
     """
     Function to make Node elements from Message object.
