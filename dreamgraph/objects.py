@@ -1,4 +1,4 @@
-#coding:utf8
+#coding:utf-8
 """
 DreamGraph - The Python module for Telegraph API.
 Copyright (C) 2018  Jasur NURBOEV <https://github.com/JasurbekNURBOYEV>
@@ -32,32 +32,37 @@ class Account:
         method = 'getAccountInfo'
         if type(data) == str:
             request = r.get(url=API_URL + method, params={'access_token': data})
-            result = json.loads(request.text)['result']
-            self.access_token = data
-        else:
-            result = data
-            if 'access_token' in result.keys():
-                self.access_token = result['access_token'] if result['access_token'] != '' else None
+            json_object = json.loads(request.text)
+            if 'result' in json_object.keys():
+                self.access_token = data
+                self.available_methods = ['get_account_info', 'edit_account_info',
+                                'revoke_access_token', 'create_page', 'edit_page',
+                                'get_page', 'get_page_list', 'get_views']
             else:
-                self.access_token = None
-        if 'short_name' in result.keys():
-            self.short_name = result['short_name'] if result['short_name'] != '' else None
+                error = json_object['error']
+                raise ValueError("Telegraph API raised an error: {}".format(error))
+        else:
+            raise ValueError("Please, provide string object, you've just used {} instad of string.".format(type(data)))
+
+        keys = json_object.keys()
+        if 'short_name' in keys:
+            self.short_name = json_object['short_name'] if json_object['short_name'] != '' else None
         else:
             self.short_name = None
-        if 'author_name' in result.keys():
-            self.author_name = result['author_name'] if result['author_name'] != '' else None
+        if 'author_name' in keys:
+            self.author_name = json_object['author_name'] if json_object['author_name'] != '' else None
         else:
             self.author_name = None
-        if 'author_url' in result.keys():
-            self.author_url = result['author_url'] if result['author_url'] != '' else None
+        if 'author_url' in keys:
+            self.author_url = json_object['author_url'] if json_object['author_url'] != '' else None
         else:
             self.author_url = None
-        if 'auth_url' in result.keys():
-            self.auth_url = result['auth_url'] if result['auth_url'] != '' else None
+        if 'auth_url' in keys:
+            self.auth_url = json_object['auth_url'] if json_object['auth_url'] != '' else None
         else:
             self.auth_url = None
-        if 'page_count' in result.keys():
-            self.page_count = result['page_count'] if result['page_count'] != '' else None
+        if 'page_count' in keys:
+            self.page_count = json_object['page_count'] if json_object['page_count'] != '' else None
         else:
             self.page_count = None
 
@@ -80,8 +85,12 @@ class Account:
             data['author_url'] = author_url
             self.author_name = author_name
         request = r.get(url=API_URL + method, params=data)
-        result = Account(json.loads(request.text)['result']['access_token'])
-        return result
+        json_object = json.loads(request.text)
+        if 'result' in json_object.keys():
+            return Account(json_object['result']['access_token'])
+        else:
+            error = json_object['error']
+            raise ValueError("Telegraph API raised an error: {}".format(error))
 
     def get_account_info(self):
         """
@@ -106,7 +115,12 @@ class Account:
         """
         method = 'revokeAccessToken'
         request = r.get(url=API_URL + method, params={'access_token': self.access_token})
-        return Account(json.loads(request.text)['result']['access_token'])
+        json_object = json.loads(request.text)
+        if 'result' in json_object.keys():
+            return Account(json_object['result']['access_token'])
+        else:
+            error = json_object['error']
+            raise ValueError("Telegraph API raised an error: {}".format(error))
 
     def create_page(self, title=str, content=list, author_name=None, author_url=None, return_content=True):
         """
@@ -127,8 +141,12 @@ class Account:
         if author_url:
             data['author_url'] = author_url
         request = r.get(url=API_URL + method, params=data)
-        result = Page(json.loads(request.text)['result'])
-        return result
+        json_object = json.loads(request.text)
+        if 'result' in json_object.keys():
+            return Page(json_object['result'])
+        else:
+            error = json_object['error']
+            raise ValueError("Telegraph API raised an error: {}".format(error))
 
     def edit_page(self, path=str, title=str, content=list, author_name=None, author_url=None, return_content=False):
         """
@@ -147,7 +165,12 @@ class Account:
         if author_url:
             data['author_url'] = author_url
         request = r.get(url=API_URL + method, params=data)
-        return Page(json.loads(request.text)['result'])
+        json_object = json.loads(request.text)
+        if 'result' in json_object.keys():
+            return Page(json_object['result'])
+        else:
+            error = json_object['error']
+            raise ValueError("Telegraph API raised an error: {}".format(error))
 
     def get_page(self, path, return_content=True):
         """
@@ -158,7 +181,12 @@ class Account:
         method = 'getPage'
         data = {'path': path, 'return_content': return_content}
         request = r.get(url=API_URL + method, params=data)
-        return Page(json.loads(request.text)['result'])
+        json_object = json.loads(request.text)
+        if 'result' in json_object.keys():
+            return Page(json_object['result'])
+        else:
+            error = json_object['error']
+            raise ValueError("Telegraph API raised an error: {}".format(error))
 
     def get_page_list(self, offset=0, limit=50):
         """
@@ -169,8 +197,12 @@ class Account:
         method = 'getPageList'
         data = {'access_token': self.access_token, 'offset': offset, 'limit': limit}
         request = r.get(url=API_URL + method, params=data)
-        result = json.loads(request.text)
-        return PageList(result['result'])
+        json_object = json.loads(request.text)
+        if 'result' in json_object.keys():
+            return PageList(json_object['result'])
+        else:
+            error = json_object['error']
+            raise ValueError("Telegraph API raised an error: {}".format(error))
 
     def get_views(self, path=str, year=int, month=int, day=int, hour=None):
         """
@@ -186,8 +218,12 @@ class Account:
         if hour:
             data['hour'] = hour
         request = r.get(url=API_URL + method, params=data)
-        result = json.loads(request.text)['result']
-        return PageViews(result['views'])
+        json_object = json.loads(request.text)
+        if 'result' in json_object.keys():
+            return PageViews(json.object['result']['views'])
+        else:
+            error = json_object['error']
+            raise ValueError("Telegraph API raised an error: {}".format(error))
 
 
 class PageList:
@@ -270,6 +306,10 @@ class Page:
         return cls
 
     def __new__(cls, data=dict):
+        """
+        :param data: required, the data which is returned by Telegraph API.
+        :return: the object of current class is returned.
+        """
         keys = data.keys()
         cls.path = data['path']
         cls.url = data['url']
