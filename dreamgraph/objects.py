@@ -96,18 +96,26 @@ class Account:
         """
         :return: the dict including all info about the account is returned on success.
         """
+        method = 'getAccountInfo'
         data = {'access_token': self.access_token}
-        if self.short_name:
-            data['short_name'] = self.short_name
-        if self.author_name:
-            data['author_name'] = self.author_name
-        if self.auth_url:
-            data['author_url'] = self.author_url
-        if self.author_url:
-            data['auth_url'] = self.auth_url
-        if self.page_count:
-            data['page_count'] = self.page_count
-        return data
+        result = r.get(url=API_URL + method, params=data)
+        json_object = json.loads(result.text)
+        keys = json_object.keys()
+        if 'result' in keys:
+            if 'short_name' in keys:
+                data['short_name'] = json_object['short_name']
+            if 'author_name' in keys:
+                data['author_name'] = json_object['author_name']
+            if 'auth_url' in keys:
+                data['author_url'] = json_object['author_url']
+            if 'author_url' in keys:
+                data['auth_url'] = json_object['auth_url']
+            if 'page_count' in keys:
+                data['page_count'] = json_object['page_count']
+            return data
+        else:
+            error = json_object['error']
+            raise ValueError("Telegraph API raised an error: {}".format(error))
 
     def revoke_access_token(self):
         """
