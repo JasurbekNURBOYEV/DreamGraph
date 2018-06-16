@@ -107,9 +107,9 @@ class Account:
                 data['short_name'] = json_object['result']['short_name']
             if 'author_name' in keys:
                 data['author_name'] = json_object['result']['author_name']
-            if 'auth_url' in keys:
-                data['author_url'] = json_object['result']['author_url']
             if 'author_url' in keys:
+                data['author_url'] = json_object['result']['author_url']
+            if 'auth_url' in keys:
                 data['auth_url'] = json_object['result']['auth_url']
             if 'page_count' in keys:
                 data['page_count'] = json_object['result']['page_count']
