@@ -96,18 +96,26 @@ class Account:
         """
         :return: the dict including all info about the account is returned on success.
         """
+        method = 'getAccountInfo'
         data = {'access_token': self.access_token}
-        if self.short_name:
-            data['short_name'] = self.short_name
-        if self.author_name:
-            data['author_name'] = self.author_name
-        if self.auth_url:
-            data['author_url'] = self.author_url
-        if self.author_url:
-            data['auth_url'] = self.auth_url
-        if self.page_count:
-            data['page_count'] = self.page_count
-        return data
+        result = r.get(url=API_URL + method, params=data)
+        json_object = json.loads(result.text)
+        keys = json_object.keys()
+        if 'result' in keys:
+            if 'short_name' in keys:
+                data['short_name'] = json_object['short_name']
+            if 'author_name' in keys:
+                data['author_name'] = json_object['author_name']
+            if 'auth_url' in keys:
+                data['author_url'] = json_object['author_url']
+            if 'author_url' in keys:
+                data['auth_url'] = json_object['auth_url']
+            if 'page_count' in keys:
+                data['page_count'] = json_object['page_count']
+            return data
+        else:
+            error = json_object['error']
+            raise ValueError("Telegraph API raised an error: {}".format(error))
 
     def revoke_access_token(self):
         """
@@ -252,30 +260,6 @@ class Page:
     This class is one of the main classes.
     It represents all necessary attributes of the article.
     """
-    def __init__(self, path, url, title, description, views, author_name=None, author_url=None, image_url=None, content=None, can_edit=None):
-        """
-        :param path: required, path to the article.
-        :param url: required, url of the page.
-        :param title: required, title of the page.
-        :param description: required, description of the page.
-        :param views: optional, number of page views for the page.
-        :param author_name: optional, name of the author, displayed below the title.
-        :param author_url: optional, the link which makes author_name clickable.
-        :param image_url: optional, image url of the page.
-        :param content: optional, the content of the article: Node elements.
-        :param can_edit: optional, only returned if access_token passed. True, if the target Telegraph account can edit the page.
-        """
-        self.path = path
-        self.url = url
-        self.title = title
-        self.description = description
-        self.views = views
-        self.author_name = author_name
-        self.author_url = author_url
-        self.image_url = image_url
-        self.content = content
-        self.can_edit = can_edit
-
     def __init__(self, data=dict):
         """
         :param data: required, the data which is returned by Telegraph API
@@ -291,20 +275,7 @@ class Page:
         self.content = data['content'] if 'content' in keys else None
         self.views = data['views'] if 'views' in keys else None
         self.can_edit = data['can_edit'] if 'can_edit' in keys else False
-
-    def __new__(cls, path, url, title, description, views, author_name=None, author_url=None, image_url=None, content=None, can_edit=None):
-        cls.path = path
-        cls.url = url
-        cls.title = title
-        cls.description = description
-        cls.views = views
-        cls.author_name = author_name
-        cls.author_url = author_url
-        cls.image_url = image_url
-        cls.content = content
-        cls.can_edit = can_edit
-        return cls
-
+    
     def __new__(cls, data=dict):
         """
         :param data: required, the data which is returned by Telegraph API.
