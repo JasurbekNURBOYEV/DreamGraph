@@ -102,16 +102,17 @@ class Account:
         json_object = json.loads(result.text)
         keys = json_object.keys()
         if 'result' in keys:
+            keys = json_object['result'].keys()
             if 'short_name' in keys:
-                data['short_name'] = json_object['short_name']
+                data['short_name'] = json_object['result']['short_name']
             if 'author_name' in keys:
-                data['author_name'] = json_object['author_name']
+                data['author_name'] = json_object['result']['author_name']
             if 'auth_url' in keys:
-                data['author_url'] = json_object['author_url']
+                data['author_url'] = json_object['result']['author_url']
             if 'author_url' in keys:
-                data['auth_url'] = json_object['auth_url']
+                data['auth_url'] = json_object['result']['auth_url']
             if 'page_count' in keys:
-                data['page_count'] = json_object['page_count']
+                data['page_count'] = json_object['result']['page_count']
             return data
         else:
             error = json_object['error']
