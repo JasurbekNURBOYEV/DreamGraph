@@ -43,7 +43,7 @@ class Account:
                 raise ValueError("Telegraph API raised an error: {}".format(error))
         else:
             raise ValueError("Please, provide string object, you've just used {} instad of string.".format(type(data)))
-
+        json_object = json_object['result']
         keys = json_object.keys()
         if 'short_name' in keys:
             self.short_name = json_object['short_name'] if json_object['short_name'] != '' else None
