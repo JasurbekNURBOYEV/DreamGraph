@@ -42,7 +42,7 @@ def NewAccount(short_name, author_name=None, author_url=None):
     result = r.get(url=API_URL + method, params=data)
     json_object = json.loads(result.text)
     if 'result' in json_object.keys():
-        return Account(json_object['result'])
+        return Account(json_object['result']['access_token'])
     else:
         error = json_object['error']
         raise ValueError('Telegraph API raised an error: {}'.format(error))
