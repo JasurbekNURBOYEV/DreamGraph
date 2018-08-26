@@ -22,6 +22,17 @@ import requests as r
 from .params import API_URL
 
 
+def store_access_token(access_token):
+    """
+    :param access_token: access_token of an account
+    :return: boolean
+    """
+    template = '[dreamgraph]\naccess_token = {access_token}'
+    data = template.format(access_token=access_token)
+    open('./config.ini', 'w').write(data)
+    return True
+
+
 class Account:
     """
     The main class.
@@ -126,7 +137,9 @@ class Account:
         request = r.get(url=API_URL + method, params={'access_token': self.access_token})
         json_object = json.loads(request.text)
         if 'result' in json_object.keys():
-            return Account(json_object['result']['access_token'])
+            self.access_token = json_object['result']['access_token']
+            store_access_token(self.access_token)
+            return self.access_token
         else:
             error = json_object['error']
             raise ValueError("Telegraph API raised an error: {}".format(error))
