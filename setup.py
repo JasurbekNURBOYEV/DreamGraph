@@ -21,7 +21,7 @@ setup(
   author = 'Jasur Nurboev',
   author_email = 'bluestacks6523@gmail.com',
   url = 'https://github.com/JasurbekNURBOYEV/DreamGraph',
-  download_url = 'https://github.com/JasurbekNURBOYEV/DreamGraph/archive/1.0.8.tar.gz',
+  download_url = 'https://github.com/JasurbekNURBOYEV/DreamGraph/archive/1.1.0.tar.gz',
   keywords = ['telegraph', 'telegraph-api', 'python-module', 'dreamgraph'],
   classifiers = [],
   install_requires=['requests'],
