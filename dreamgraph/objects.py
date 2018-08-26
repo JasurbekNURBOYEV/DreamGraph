@@ -20,6 +20,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 import json
 import requests as r
 from .params import API_URL
+from .api import store_access_token
 
 
 class Account:
@@ -126,7 +127,9 @@ class Account:
         request = r.get(url=API_URL + method, params={'access_token': self.access_token})
         json_object = json.loads(request.text)
         if 'result' in json_object.keys():
-            return Account(json_object['result']['access_token'])
+            self.access_token = json_object['result']['access_token']
+            store_access_token(self.access_token)
+            return self.access_token
         else:
             error = json_object['error']
             raise ValueError("Telegraph API raised an error: {}".format(error))
