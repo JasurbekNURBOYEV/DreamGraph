@@ -20,7 +20,17 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 import json
 import requests as r
 from .params import API_URL
-from .api import store_access_token
+
+
+def store_access_token(access_token):
+    """
+    :param access_token: access_token of an account
+    :return: boolean
+    """
+    template = '[dreamgraph]\naccess_token = {access_token}'
+    data = template.format(access_token=access_token)
+    open('./config.ini', 'w').write(data)
+    return True
 
 
 class Account:
