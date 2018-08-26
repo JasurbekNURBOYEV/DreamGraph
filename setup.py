@@ -15,7 +15,7 @@ Module works in both: Python 2 and Python 3.
 setup(
   name = 'dreamgraph',
   packages = ['dreamgraph'],
-  version = '1.0.8',
+  version = '1.1.0',
   long_description=description,
   description = 'The Python module for Telegraph API',
   author = 'Jasur Nurboev',
