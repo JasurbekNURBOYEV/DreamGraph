@@ -20,6 +20,7 @@ from .params import API_URL
 from .objects import Account, store_access_token
 import re
 
+
 def LogIn(access_token):
     """
     Use this method in order to log in to existing Telegraph account.
@@ -62,7 +63,6 @@ def extract_from_file():
 
 
 def register():
-
     """
     :return: Account object
     """
@@ -72,20 +72,26 @@ def register():
 
     short_name = input('Enter short name for your account (you can change it later): ')
     while len(short_name) == 0 or len(short_name.replace(' ', '')) == 0:
-        short_name = input('''Short name is required in order to create an account.
-Please, choose one for yourself.
-(short name cannot contain only white spaces): ''')
+        short_name = input(
+            """Short name is required in order to create an account.
+            Please, choose one for yourself.
+            (short name cannot contain only white spaces): """
+        )
 
-    author_name = input('''Enter a name for you, it will be shown in every page you create.
-You can change it later.
-Author name is an optional data, so you can skip this step by pressing the Enter key: ''')
+    author_name = input(
+        """Enter a name for you, it will be shown in every page you create.
+        You can change it later.
+        Author name is an optional data, so you can skip this step by pressing the Enter key: """
+    )
     if len(author_name) == 0 or len(author_name.replace(' ', '')) == 0:
         author_name = None
 
     if author_name:
-        author_url = input('''Enter URL for your account, it will make your author name clickable.
-You can change it later.
-Author URL is an optional data, so you can skip this step by pressing the Enter key: ''')
+        author_url = input(
+            """Enter URL for your account, it will make your author name clickable.
+            You can change it later.
+            Author URL is an optional data, so you can skip this step by pressing the Enter key: """
+        )
         if len(author_url) == 0 or len(author_url.replace(' ', '')) == 0:
             author_url = None
 

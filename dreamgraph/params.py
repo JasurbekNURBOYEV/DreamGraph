@@ -1,4 +1,4 @@
-#coding:utf-8
+# coding:utf-8
 """
 DreamGraph - The Python module for Telegraph API.
 Copyright (C) 2018  Jasur NURBOEV <https://github.com/JasurbekNURBOYEV>

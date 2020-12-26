@@ -1,4 +1,4 @@
-#coding:utf-8
+# coding:utf-8
 """
 DreamGraph - The Python module for Telegraph API.
 Copyright (C) 2018  Jasur NURBOEV <https://github.com/JasurbekNURBOYEV>
@@ -46,9 +46,11 @@ class Account:
             json_object = json.loads(request.text)
             if 'result' in json_object.keys():
                 self.access_token = data
-                self.available_methods = ['get_account_info', 'edit_account_info',
-                                'revoke_access_token', 'create_page', 'edit_page',
-                                'get_page', 'get_page_list', 'get_views']
+                self.available_methods = [
+                    'get_account_info', 'edit_account_info',
+                    'revoke_access_token', 'create_page', 'edit_page',
+                    'get_page', 'get_page_list', 'get_views'
+                ]
             else:
                 error = json_object['error']
                 raise ValueError("Telegraph API raised an error: {}".format(error))
@@ -162,7 +164,7 @@ class Account:
             data['author_name'] = author_name
         if author_url:
             data['author_url'] = author_url
-        request = r.get(url=API_URL + method, params=data)
+        request = r.post(url=API_URL + method, params=data)
         json_object = json.loads(request.text)
         if 'result' in json_object.keys():
             return Page(json_object['result'])
@@ -181,7 +183,13 @@ class Account:
         :return: the object of Page class is returned on success.
         """
         method = 'editPage'
-        data = {'access_token': self.access_token, 'path': path, 'title': title, 'content': json.dumps(content), 'return_content': return_content}
+        data = {
+            'access_token': self.access_token,
+            'path': path,
+            'title': title,
+            'content': json.dumps(content),
+            'return_content': return_content
+        }
         if author_name:
             data['author_name'] = author_name
         if author_url:
@@ -242,7 +250,7 @@ class Account:
         request = r.get(url=API_URL + method, params=data)
         json_object = json.loads(request.text)
         if 'result' in json_object.keys():
-            return PageViews(json.object['result']['views'])
+            return PageViews(json_object['result']['views'])
         else:
             error = json_object['error']
             raise ValueError("Telegraph API raised an error: {}".format(error))
@@ -253,6 +261,7 @@ class PageList:
     This class includes only two attributes: total count of articles (total_count)
     and the list of objects of Page class (pages).
     """
+
     def __init__(self, data):
         self.total_count = data['total_count']
         pages = []
@@ -274,6 +283,7 @@ class Page:
     This class is one of the main classes.
     It represents all necessary attributes of the article.
     """
+
     def __init__(self, data=dict):
         """
         :param data: required, the data which is returned by Telegraph API
@@ -289,7 +299,7 @@ class Page:
         self.content = data['content'] if 'content' in keys else None
         self.views = data['views'] if 'views' in keys else None
         self.can_edit = data['can_edit'] if 'can_edit' in keys else False
-    
+
     def __new__(cls, data=dict):
         """
         :param data: required, the data which is returned by Telegraph API.
@@ -313,6 +323,7 @@ class PageViews:
     """
     This class has only one attribute: number of views for the page (views).
     """
+
     def __init__(self, views):
         """
         :param views: required, number of views for the page (views).
