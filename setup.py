@@ -1,4 +1,5 @@
 from setuptools import setup
+from dreamgraph import __version__
 
 description = """
 **The Python module for Telegraph API.**
@@ -11,7 +12,6 @@ Docs: http://dreamgraph.ml
 Module is only compatible with Python 3.
 
 """
-__version__ = '1.1.3'
 
 setup(
     name='dreamgraph',
