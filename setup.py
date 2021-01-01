@@ -1,5 +1,5 @@
 from setuptools import setup
-from dreamgraph import __version__
+from dreamgraph.params import __version__
 
 description = """
 **The Python module for Telegraph API.**
