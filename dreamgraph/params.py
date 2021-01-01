@@ -24,4 +24,3 @@ magic_list = [19, 12, 12, 6, 58, 47, 63, 63, 10, 6, 13, 73, 12, 3, 29, 3, 46, 21
 It is always fun to make magic tricks ;)
 """
 API_URL = ''.join([fairy_tale[a] for a in magic_list])
-__version__ = '1.1.5'

@@ -18,5 +18,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
 from .api import LogIn, NewAccount, start
-from .params import API_URL, __version__
+from .params import API_URL
 from .api import msg_to_node
+from setup import __version__
