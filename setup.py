@@ -11,7 +11,7 @@ Docs: http://dreamgraph.ml
 Module is only compatible with Python 3.
 
 """
-__version__ = '1.1.5'
+__version__ = '1.1.6'
 
 
 setup(
